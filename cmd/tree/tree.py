@@ -35,8 +35,12 @@ def print_tree(dir_path, level):
                     # Recursion
                     print_tree(entry.path, len(entry.name))
 
+    except FileNotFoundError:
+        return f"Error: Directory '{dir_path}' not found."
+    except PermissionError:
+        return f"Error: Permission denied to read directory '{dir_path}'"
     except Exception as e:
-        return str(e)
+        return f"Error: {e}"
     return None
 
 

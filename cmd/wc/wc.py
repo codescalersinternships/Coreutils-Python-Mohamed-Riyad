@@ -34,8 +34,12 @@ def count(file_name):
                 lines += 1
                 words += len(line.split())
                 characters += len(line)
+    except FileNotFoundError:
+        return f"Error: File '{file_name}' not found."
+    except PermissionError:
+        return f"Error: Permission denied to read file '{file_name}'"
     except Exception as e:
-        return str(e)
+        return f"Error: {e}"
 
     return lines, words, characters
 

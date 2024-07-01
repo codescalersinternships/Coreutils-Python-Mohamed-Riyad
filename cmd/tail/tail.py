@@ -32,8 +32,12 @@ def print_lines_tail(file_name, num_lines):
                 # If the number of lines exceeds num_lines, remove the first line
                 if len(lines) > num_lines:
                     lines.pop(0)
+    except FileNotFoundError:
+        return f"Error: File '{file_name}' not found."
+    except PermissionError:
+        return f"Error: Permission denied to read file '{file_name}'"
     except Exception as e:
-        return str(e)
+        return f"Error: {e}"
     # Print the lines
     for line in lines:
         print(line, end='')

@@ -33,8 +33,12 @@ def print_lines_head(file_name, num_lines):
                     print(line, end='')
                 else:
                     break
+    except FileNotFoundError:
+        print(f"Error: File '{file_name}' not found.")
+    except PermissionError:
+        print(f"Error: Permission denied to read file '{file_name}'")
     except Exception as e:
-        return str(e)
+        print(f"Error: {e}")
     print("\n")
     return None
 
